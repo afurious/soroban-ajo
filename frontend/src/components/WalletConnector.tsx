@@ -1,41 +1,31 @@
-// Issue #19: Create wallet connection component
-// Complexity: Trivial (100 pts)
-// Status: Placeholder
+// Wallet connection component with Freighter/Albedo integration
+// This component provides a reusable wallet connection interface
 
-import React, { useState } from 'react'
+import React from 'react';
+import { WalletConnect } from './WalletConnect';
 
 export const WalletConnector: React.FC = () => {
-  const [connected, setConnected] = useState(false)
-  const [address, setAddress] = useState('')
+  const handleConnect = (address: string) => {
+    console.log('Wallet connected:', address);
+  };
 
-  const handleConnect = async () => {
-    // TODO: Integrate with Freighter wallet
-    // Steps:
-    // 1. Check if Freighter is installed
-    // 2. Request user to connect wallet
-    // 3. Get user's public key
-    // 4. Store in Zustand store
-    // 5. Update connected state
-    setConnected(true)
-    setAddress('GXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-  }
+  const handleDisconnect = () => {
+    console.log('Wallet disconnected');
+  };
+
+  const handleError = (error: string) => {
+    console.error('Wallet connection error:', error);
+  };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow">
+    <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Wallet Connection</h2>
-      {connected ? (
-        <div>
-          <p className="text-green-600 mb-2">Connected ✓</p>
-          <p className="text-sm text-gray-600 break-all">{address}</p>
-        </div>
-      ) : (
-        <button
-          onClick={handleConnect}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-        >
-          Connect Wallet
-        </button>
-      )}
+      <WalletConnect
+        onConnect={handleConnect}
+        onDisconnect={handleDisconnect}
+        onError={handleError}
+        showNetworkSelector={true}
+      />
     </div>
-  )
-}
+  );
+};
