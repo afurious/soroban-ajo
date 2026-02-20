@@ -38,9 +38,6 @@ pub enum AjoError {
     /// Groups need at least 2 members to work.
     MaxMembersBelowMinimum = 11,
     
-    /// Negative amounts aren't allowed for contributions.
-    ContributionAmountNegative = 16,
-    
     /// Member doesn't have enough balance.
     InsufficientBalance = 12,
     
@@ -55,4 +52,7 @@ pub enum AjoError {
     
     /// Contribution outside active cycle window
     OutsideCycleWindow = 16,
+    
+    /// Negative amounts aren't allowed for contributions.
+    ContributionAmountNegative = 17,
 }
